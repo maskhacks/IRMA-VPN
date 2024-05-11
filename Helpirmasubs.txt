@@ -1,247 +1,247 @@
 {
   "log": {
-    «معلول»: درست است،
-    "سطح": "هراس"
-  }،
+    "disabled": true,
+    "level": "panic"
+  },
   "dns": {
-    "سرورها": [
+    "servers": [
       {
-        "برچسب": "اینترنت-dns"،
-        "آدرس": "https://8.8.8.8/dns-query"،
+        "tag": "Internet-dns",
+        "address": "https://8.8.8.8/dns-query",
         "address_resolver": "direct-dns",
-        "دور": "اینترنت"
-      }،
+        "detour": "Internet"
+      },
       {
-        "برچسب": "بهترین تاخیر-dns"،
-        "آدرس": "https://8.8.8.8/dns-query"،
+        "tag": "Best Latency-dns",
+        "address": "https://8.8.8.8/dns-query",
         "address_resolver": "direct-dns",
-        "دور": "بهترین تاخیر"
-      }،
+        "detour": "Best Latency"
+      },
       {
-        "برچسب": "direct-dns"،
-        "آدرس": "محلی"،
-        "بیراهه": "مستقیم"
-      }،
+        "tag": "direct-dns",
+        "address": "local",
+        "detour": "direct"
+      },
       {
-        "برچسب": "block-dns"،
-        "آدرس": "rcode://success"
+        "tag": "block-dns",
+        "address": "rcode://success"
       }
-    ]،
-    "قوانین": [
+    ],
+    "rules": [
       {
-        "خروجی": "اینترنت"،
+        "outbound": "Internet",
         "server": "Internet-dns",
         "rewrite_ttl": 20
-      }،
+      },
       {
-        "outbound": "بهترین تاخیر"،
-        "server": "Best Latency-dns"،
+        "outbound": "Best Latency",
+        "server": "Best Latency-dns",
         "rewrite_ttl": 20
-      }،
+      },
       {
-        "خروجی": "مستقیم"،
-        "سرور": "direct-dns"،
+        "outbound": "direct",
+        "server": "direct-dns",
         "rewrite_ttl": 20
-      }،
+      },
       {
-        "خروجی": "هر"
-        "سرور": "direct-dns"،
+        "outbound": "any",
+        "server": "direct-dns",
         "rewrite_ttl": 20
       }
-    ]،
-    "disable_expire": درست است
-  }،
+    ],
+    "disable_expire": true
+  },
   "inbounds": [
     {
-      "نوع": "تن"،
-      "برچسب": "tun-in",
-      "interface_name": "tun0"،
-      "mtu": 9000،
-      "inet4_address": "172.19.0.1/30"،
-      "inet6_address": "fdfe:dcba:9876::1/126"،
-      "auto_route": درست است،
-      "strict_route": درست است،
-      "پشته": "مختلط"،
-      « دم » : درست
-    }،
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "mixed",
+      "sniff": true
+    },
     {
-      "نوع": "مختلط"،
-      "برچسب": "مختلط"،
-      "گوش دادن": "0.0.0.0"،
-      "listen_port": 2080،
-      « دم » : درست
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "0.0.0.0",
+      "listen_port": 2080,
+      "sniff": true
     }
-  ]،
-  "خروجی": [
+  ],
+  "outbounds": [
     {
-      "نوع": "انتخاب کننده"،
-      "برچسب": "اینترنت"،
-      "خروجی": [
-        "بهترین تاخیر"،
-        "🇳🇱 𝐈𝐑𝐂𝐏"،
-        "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐"،
-        "🇳🇱 𝐈𝐑𝐂𝐏 - 𝐢𝐩𝐯𝟔"،
+      "type": "selector",
+      "tag": "Internet",
+      "outbounds": [
+        "Best Latency",
+        "🇳🇱 𝐈𝐑𝐂𝐏",
+        "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐",
+        "🇳🇱 𝐈𝐑𝐂𝐏 - 𝐢𝐩𝐯𝟔",
         "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐 - 𝐢𝐩𝐯𝟔"
       ]
-    }،
+    },
     {
       "type": "urltest",
-      "برچسب": "بهترین تاخیر"،
-      "خروجی": [
-        "🇳🇱 𝐈𝐑𝐂𝐏"،
-        "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐"،
-        "🇳🇱 𝐈𝐑𝐂𝐏 - 𝐢𝐩𝐯𝟔"،
+      "tag": "Best Latency",
+      "outbounds": [
+        "🇳🇱 𝐈𝐑𝐂𝐏",
+        "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐",
+        "🇳🇱 𝐈𝐑𝐂𝐏 - 𝐢𝐩𝐯𝟔",
         "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐 - 𝐢𝐩𝐯𝟔"
-      ]،
-      "url": "http://www.google.com/generate_204"،
-      "فاصله": "10m0s"،
-      "تحمل": 50،
+      ],
+      "url": "http://www.google.com/generate_204",
+      "interval": "10m0s",
+      "tolerance": 50,
       "idle_timeout": "30m0s"
-    }،
+    },
     {
-      "نوع": "هیستری2"،
-      "برچسب": "🇳🇱 𝐈𝐑𝐂𝐏"،
-      "سرور": "193.38.54.48"،
-      "server_port": 443،
+      "type": "hysteria2",
+      "tag": "🇳🇱 𝐈𝐑𝐂𝐏",
+      "server": "193.38.54.48",
+      "server_port": 443,
       "obfs": {
-        "نوع": "سلامندر"،
-        "رمز عبور": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489"
-      }،
-      "رمز عبور": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489"،
+        "type": "salamander",
+        "password": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489"
+      },
+      "password": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489",
       "tls": {
-        "فعال": درست،
-        "server_name": "let-him-cook.ircp.online"،
-        "alpn": "h3"،
-        "min_version": "1.3"،
-        "max_version": "1.3"،
+        "enabled": true,
+        "server_name": "let-him-cook.ircp.online",
+        "alpn": "h3",
+        "min_version": "1.3",
+        "max_version": "1.3",
         "ech": {
-          "فعال": درست،
-          "pq_signature_schemes_enabled": درست است،
-          "پیکربندی": [
-            "-----شروع تنظیمات ECH-----"،
-            "AFf+DQBTAAAgACCc2kqEYGusiYc5fj1smMpQJYQLckpS1bgOaCDLvoiofgAIAAEA"،
+          "enabled": true,
+          "pq_signature_schemes_enabled": true,
+          "config": [
+            "-----BEGIN ECH CONFIGS-----",
+            "AFf+DQBTAAAgACCc2kqEYGusiYc5fj1smMpQJYQLckpS1bgOaCDLvoiofgAIAAEA",
             "AQABAAMAIFstLXBxLXNpZ25hdHVyZS1zY2hlbWVzLWVuYWJsZWRdAAA=",
             "-----END ECH CONFIGS-----"
           ]
         }
       }
-    }،
+    },
     {
-      "نوع": "هیستری2"،
-      "برچسب": "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐"،
-      "سرور": "37.221.127.169"،
-      "server_port": 443،
+      "type": "hysteria2",
+      "tag": "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐",
+      "server": "37.221.127.169",
+      "server_port": 443,
       "obfs": {
-        "نوع": "سلامندر"،
-        "رمز عبور": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489-2"
-      }،
-      "رمز عبور": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489-2"،
+        "type": "salamander",
+        "password": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489-2"
+      },
+      "password": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489-2",
       "tls": {
-        "فعال": درست،
-        "server_name": "let-her-cook.ircp.online"،
-        "alpn": "h3"،
-        "min_version": "1.3"،
-        "max_version": "1.3"،
+        "enabled": true,
+        "server_name": "let-her-cook.ircp.online",
+        "alpn": "h3",
+        "min_version": "1.3",
+        "max_version": "1.3",
         "ech": {
-          "فعال": درست،
-          "pq_signature_schemes_enabled": درست است،
-          "پیکربندی": [
-            "-----شروع تنظیمات ECH-----"،
-            "AFf+DQBTAAAgACDEm4x9dlkKtLblXP7y0ZjKr7g6DdP2WaOgIjI6ujcnTQAIAAEA"،
+          "enabled": true,
+          "pq_signature_schemes_enabled": true,
+          "config": [
+            "-----BEGIN ECH CONFIGS-----",
+            "AFf+DQBTAAAgACDEm4x9dlkKtLblXP7y0ZjKr7g6DdP2WaOgIjI6ujcnTQAIAAEA",
             "AQABAAMAIFstLXBxLXNpZ25hdHVyZS1zY2hlbWVzLWVuYWJsZWRdAAA=",
             "-----END ECH CONFIGS-----"
           ]
         }
       }
-    }،
+    },
     {
-      "نوع": "هیستری2"،
-      "برچسب": "🇳🇱 𝐈𝐑𝐂𝐏 - 𝐢𝐩𝐯𝟔"،
-      "سرور": "2a09:7c44:0:14::1"،
-      "server_port": 443،
+      "type": "hysteria2",
+      "tag": "🇳🇱 𝐈𝐑𝐂𝐏 - 𝐢𝐩𝐯𝟔",
+      "server": "2a09:7c44:0:14::1",
+      "server_port": 443,
       "obfs": {
-        "نوع": "سلامندر"،
-        "رمز عبور": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489"
-      }،
-      "رمز عبور": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489"،
+        "type": "salamander",
+        "password": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489"
+      },
+      "password": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489",
       "tls": {
-        "فعال": درست،
-        "server_name": "let-him-cook.ircp.online"،
-        "alpn": "h3"،
-        "min_version": "1.3"،
-        "max_version": "1.3"،
+        "enabled": true,
+        "server_name": "let-him-cook.ircp.online",
+        "alpn": "h3",
+        "min_version": "1.3",
+        "max_version": "1.3",
         "ech": {
-          "فعال": درست،
-          "pq_signature_schemes_enabled": درست است،
-          "پیکربندی": [
-            "-----شروع تنظیمات ECH-----"،
-            "AFf+DQBTAAAgACCc2kqEYGusiYc5fj1smMpQJYQLckpS1bgOaCDLvoiofgAIAAEA"،
+          "enabled": true,
+          "pq_signature_schemes_enabled": true,
+          "config": [
+            "-----BEGIN ECH CONFIGS-----",
+            "AFf+DQBTAAAgACCc2kqEYGusiYc5fj1smMpQJYQLckpS1bgOaCDLvoiofgAIAAEA",
             "AQABAAMAIFstLXBxLXNpZ25hdHVyZS1zY2hlbWVzLWVuYWJsZWRdAAA=",
             "-----END ECH CONFIGS-----"
           ]
         }
       }
-    }،
+    },
     {
-      "نوع": "هیستری2"،
-      "برچسب": "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐 - 𝐢𝐩𝐯𝟔",
-      "سرور": "2a09:7c44:0:13::1"،
-      "server_port": 443،
+      "type": "hysteria2",
+      "tag": "🇳🇱 𝐈𝐑𝐂𝐏 - 𝟐 - 𝐢𝐩𝐯𝟔",
+      "server": "2a09:7c44:0:13::1",
+      "server_port": 443,
       "obfs": {
-        "نوع": "سلامندر"،
-        "رمز عبور": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489-2"
-      }،
-      "رمز عبور": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489-2"،
+        "type": "salamander",
+        "password": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489-2"
+      },
+      "password": "@ln2ray-5bdf790f-0af2-4481-a624-41b66e7e3489-2",
       "tls": {
-        "فعال": درست،
-        "server_name": "let-her-cook.ircp.online"،
-        "alpn": "h3"،
-        "min_version": "1.3"،
-        "max_version": "1.3"،
+        "enabled": true,
+        "server_name": "let-her-cook.ircp.online",
+        "alpn": "h3",
+        "min_version": "1.3",
+        "max_version": "1.3",
         "ech": {
-          "فعال": درست،
-          "pq_signature_schemes_enabled": درست است،
-          "پیکربندی": [
-            "-----شروع تنظیمات ECH-----"،
-            "AFf+DQBTAAAgACDEm4x9dlkKtLblXP7y0ZjKr7g6DdP2WaOgIjI6ujcnTQAIAAEA"،
+          "enabled": true,
+          "pq_signature_schemes_enabled": true,
+          "config": [
+            "-----BEGIN ECH CONFIGS-----",
+            "AFf+DQBTAAAgACDEm4x9dlkKtLblXP7y0ZjKr7g6DdP2WaOgIjI6ujcnTQAIAAEA",
             "AQABAAMAIFstLXBxLXNpZ25hdHVyZS1zY2hlbWVzLWVuYWJsZWRdAAA=",
             "-----END ECH CONFIGS-----"
           ]
         }
       }
-    }،
+    },
     {
-      "نوع": "مستقیم"،
-      "برچسب": "مستقیم"
-    }،
+      "type": "direct",
+      "tag": "direct"
+    },
     {
       "type": "block",
-      "برچسب": "مسدود کردن"
-    }،
+      "tag": "block"
+    },
     {
-      "نوع": "dns"،
-      "تگ": "dns-out"
+      "type": "dns",
+      "tag": "dns-out"
     }
-  ]،
-  "مسیر": {
-    "قوانین": [
+  ],
+  "route": {
+    "rules": [
       {
-        "پورت": 53،
+        "port": 53,
         "outbound": "dns-out"
-      }،
+      },
       {
-        "ip_is_private": درست است،
-        "خروجی": "مستقیم"
+        "ip_is_private": true,
+        "outbound": "direct"
       }
-    ]،
-    "نهایی": "اینترنت"،
-    "auto_detect_interface": درست است،
-    "override_android_vpn": درست است
-  }،
-  "تجربی": {
+    ],
+    "final": "Internet",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
     "cache_file": {
-      "فعال": درست،
-      "path": "cache.db"،
+      "enabled": true,
+      "path": "cache.db",
       "cache_id": "ircp"
     }
   }
